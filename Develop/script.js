@@ -21,6 +21,7 @@ $(document).ready(function () {
         window.localStorage.setItem(time.split(" ")[0], event);
         //saves everything to index.html's local storage
         window.location.href = "index.html";
+        
 
         
     };
@@ -48,13 +49,15 @@ console.log('current hour: ', currentHour)
 console.log(currentTime);
 
 for (var i = 9; i < 18; i++) {
-    var hour = $(`#hour-${i}` + i);
-    if (i < currentTime) {
-        hour.addClass("past");
+    // var hour = $(`td.tdata`).children(`#id${i}`);
+    // console.log(hour);
+    var hourForm= $(`#hour-${i}`).children().find(`input`);
+    if (i < currentHour) {
+        hourForm.addClass("past");
     } else if (i === currentHour) {
-        hour.addClass("present");
+        hourForm.addClass("present");
     } else {
-        hour.addClass("future");
+        hourForm.addClass("future");
     }
 }
 
