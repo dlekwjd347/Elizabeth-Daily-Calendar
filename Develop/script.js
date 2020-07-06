@@ -8,21 +8,18 @@ $(document).ready(function () {
     }
     writeTime();
 
-    //save new changes
+    //save new changes into local storage
     function localStorage() {
-        // event.preventDefault();
+        //sets the event key to the input in the input form 
         var event = $(this).closest("tr").find("input").val().trim();
         console.log(event);
-
+        
+        //sets the time key to the text of the time column
         var time = $(this).closest("tr").find(".time").text();
         console.log(time);
-
-        // var timeValue = $(this).parent().attr("id");
-        // console.log("timeValue: ", timeValue);
-        console.log("split time: ", time.split(" ")[0]);
-
+        //calls only the index[0] of the time class text to save specifically as the key
         window.localStorage.setItem(time.split(" ")[0], event);
-
+        //saves everything to index.html's local storage
         window.location.href = "index.html";
 
         
@@ -34,31 +31,7 @@ $(document).ready(function () {
      
   
 })
-
-
-//flow functions for gray, red, and green rows depending on time relative to time blocks 
-//current date and time
-var m = moment();
-var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
-var currentDate = m.format("MMM Do YYYY");
-var currentHour = moment().hours();
-console.log('current hour: ', currentHour)
-
-
-
-function updateColors() {
-    var currentTime = new Date().getHours();
-    for (var i = 9; i < 18; i++) {
-        console.log(currentTime, $(`#${i}`).data("time"));
-        if ($(`#${i}`).data("time") == currentTime) {
-            $(`#text${i}`).addClass("present");
-        } else if (currentTime < $(`#${i}`).data("time")) {
-            $(`#text${i}`).addClass("future",);
-        }
-    }
-}
-
-
+//retrieves the items in local storage to display permanently on the page through the index of hours
 for (let i = 9; i <=18; i++) {
     console.log("id: ",`#hour-${i} .desc`)
    $(`#hour-${i} .desc`).val(localStorage.getItem(i));
@@ -66,7 +39,24 @@ for (let i = 9; i <=18; i++) {
     
 }
 
+//current date and time variables
+var m = moment();
+var currentTime = m.format('MMMM Do YYYY, h:mm:ss a');
+var currentDate = m.format("MMM Do YYYY");
+var currentHour = moment().hours();
+console.log('current hour: ', currentHour)
+console.log(currentTime);
 
+for (var i = 9; i < 18; i++) {
+    var hour = $(`#hour-${i}` + i);
+    if (i < currentTime) {
+        hour.addClass("past");
+    } else if (i === currentHour) {
+        hour.addClass("present");
+    } else {
+        hour.addClass("future");
+    }
+}
 
 
 
