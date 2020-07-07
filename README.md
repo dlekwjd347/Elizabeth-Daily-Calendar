@@ -13,7 +13,7 @@ To add a new entry in a time block, a form is used. When the save button is clic
 When the page is refreshed, the saved events persists driven by the getItem method. 
 
 
-gitDeployed URLS:
+Deployed URLS:
 
 https://dlekwjd347.github.io/Elizabeth-Daily-Calendar/index.html
 
