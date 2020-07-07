@@ -25,12 +25,13 @@ $(document).ready(function () {
     //button to save event changes
     $(".btn").on("click", localStorage);
   });
-  //retrieves the items in local storage to display permanently on the page through the index of hours
   
+  //retrieves the items in local storage to display permanently on the page through the index of hours 0 - 9
   for (let i = 0; i <= 9; i++) {
     console.log("id: ", `#hour-${i} .desc`);
     $(`#hour-${i} .desc`).val(localStorage.getItem(i));
   }
+  //retrieves the items in local storage to display permanently on the page through the index of hours 10 - 18
   for (let i = 9; i <= 18; i++) {
     console.log("id: ", `#hour-${i} .desc`);
     $(`#hour-${i} .desc`).val(localStorage.getItem(i));
@@ -44,9 +45,9 @@ $(document).ready(function () {
   console.log("current hour: ", currentHour);
   console.log(currentTime);
   
+  //color codes the form boxes contigent upon the hour of the day vs the hour of the time block hours 0 - 9
   for (var i = 0; i < 9; i++) {
-    // var hour = $(`td.tdata`).children(`#id${i}`);
-    // console.log(hour);
+
     var hourForm = $(`#hour-${i}`).children().find(`input`);
     if (i < currentHour) {
       hourForm.addClass("past");
@@ -56,10 +57,10 @@ $(document).ready(function () {
       hourForm.addClass("future");
     }
   }
-  
+
+  //color codes the form boxes contigent upon the hour of the day vs the hour of the time block hours 10 - 18
   for (var i = 9; i < 18; i++) {
-    // var hour = $(`td.tdata`).children(`#id${i}`);
-    // console.log(hour);
+    
     var hourForm = $(`#hour-${i}`).children().find(`input`);
     if (i < currentHour) {
       hourForm.addClass("past");
